@@ -80,10 +80,11 @@ def parse_args():
                         help='Specifies <minGpuClock,maxGpuClock>, '
                              'input can also be a singular desired clock value. '
                              'See nvidia-smi -h for details')
-    parser.add_argument('-t', '--time', metavar='TIME', default=1., help='Time interval (sec)')
+    parser.add_argument('-t', '--time', metavar='TIME', default=1.0,
+                        help='Time interval (sec). Default: 1.0')
     parser.add_argument(
         '-rc', '--release-count', metavar='N', default=10,
-        help='Number of consecutive steps below the LOW threshold required for the release')
+        help='Number of consecutive steps below the LOW threshold required for the release. Default: 10')
     parser.add_argument('-swl', '--start-with-limit',
                         action='store_true', help='Whether to enforce limit at startup')
     args = parser.parse_args()
@@ -224,7 +225,7 @@ def main():
         if dev_id not in dev_ids:
             dev_ids.append(dev_id)
 
-    print('Device max power:')
+    print('Device maximum power cap:')
     max_power = []
     for dev_id in dev_ids:
         outputs = subprocess.run(

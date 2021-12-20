@@ -11,7 +11,7 @@ sudo pip3 install git+https://github.com/Lakonik/gpulimit.git
 
 ## Usage
 
-```bash
+```
 $ sudo gpulimit -h
 usage: gpulimit [-h] [-i ID] [-o FILE] [-r LOW,HIGH] [-pl POWER] [-lgc LOW,HIGH] [-t TIME] [-rc N] [-swl]
 
@@ -24,7 +24,7 @@ optional arguments:
   -r, --range LOW,HIGH              Specifies <releaseThreshold, limitThreshold> of maximum power values (e.g. 1500,1700)
   -pl, --power-limit POWER          GPU power cap (w). See nvidia-smi -h for details
   -lgc, --lock-gpu-clocks LOW,HIGH  Specifies <minGpuClock,maxGpuClock>, input can also be a singular desired clock value. See nvidia-smi -h for details
-  -t, --time TIME                   Time interval (sec)
-  -rc, --release-count N            Number of consecutive steps below the LOW threshold required for the release
+  -t, --time TIME                   Time interval (sec). Default: 1.0
+  -rc, --release-count N            Number of consecutive steps below the LOW threshold required for the release. Default: 10
   -swl, --start-with-limit          Whether to enforce limit at startup
 ```
