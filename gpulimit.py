@@ -73,7 +73,7 @@ def parse_args():
     parser.add_argument('-o', '--out', metavar='FILE', help='Output log file')
     parser.add_argument(
         '-r', '--range', metavar='LOW,HIGH',
-        help='Range of max total power specifying <releaseThreshold, limitThreshold> (e.g. 1500,1700)')
+        help='Range of max total power specifying <releaseThreshold,limitThreshold> (e.g. 1500,1700)')
     parser.add_argument('-pl', '--power-limit', metavar='POWER',
                         help='GPU power cap (w). See nvidia-smi -h for details')
     parser.add_argument('-lgc', '--lock-gpu-clocks', metavar='LOW,HIGH',
@@ -204,7 +204,7 @@ def main():
         low, high = args.range.split(',')
         low = float(low)
         high = float(high)
-        assert low < high, 'minGpuClock must be less than maxGpuClock'
+        assert low < high, 'releaseThreshold must be less than limitThreshold'
     else:
         low = high = None
     if args.out is not None:
@@ -245,8 +245,8 @@ def main():
 
     timer = threading.Thread(
         target=timer_fun,
-        args=(dev_ids, power_logs, power_peaks, power_peak_times, args.time, max_power,
-              low, high, args.power_limit, args.lock_gpu_clocks, args.release_count,
+        args=(dev_ids, power_logs, power_peaks, power_peak_times, float(args.time), max_power,
+              low, high, args.power_limit, args.lock_gpu_clocks, int(args.release_count),
               args.start_with_limit))
     timer.setDaemon(True)
     timer.start()

@@ -21,7 +21,7 @@ optional arguments:
   -h, --help                        show this help message and exit
   -i, --id ID                       GPU index
   -o, --out FILE                    Output log file
-  -r, --range LOW,HIGH              Specifies <releaseThreshold, limitThreshold> of maximum power values (e.g. 1500,1700)
+  -r, --range LOW,HIGH              Specifies <releaseThreshold,limitThreshold> of maximum power values (e.g. 1500,1700)
   -pl, --power-limit POWER          GPU power cap (w). See nvidia-smi -h for details
   -lgc, --lock-gpu-clocks LOW,HIGH  Specifies <minGpuClock,maxGpuClock>, input can also be a singular desired clock value. See nvidia-smi -h for details
   -t, --time TIME                   Time interval (sec). Default: 1.0
